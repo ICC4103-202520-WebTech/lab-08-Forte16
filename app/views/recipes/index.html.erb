@@ -1,0 +1,28 @@
+<h1>Recetas</h1>
+
+<%= link_to "Crear nueva receta", new_recipe_path, class: "btn btn-primary mb-3" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Tiempo (min)</th>
+      <th>Dificultad</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= link_to recipe.title, recipe %></td>
+        <td><%= recipe.cook_time %></td>
+        <td><%= recipe.difficulty %></td>
+        <td>
+          <%= link_to "Ver", recipe, class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to "Editar", edit_recipe_path(recipe), class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to "Eliminar", recipe, method: :delete, data: { confirm: "¿Eliminar esta receta?" }, class: "btn btn-sm btn-outline-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

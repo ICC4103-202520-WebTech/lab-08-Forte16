@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title"><%= @recipe.title %></h1>
+      
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <p><strong>Tiempo de cocción:</strong> <%= @recipe.cook_time %> minutos</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Dificultad:</strong> <%= @recipe.difficulty %></p>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h3>Instrucciones</h3>
+        <div class="instructions-content">
+          <%= @recipe.instructions %>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <%= link_to "Editar", edit_recipe_path(@recipe), class: "btn btn-primary" %>
+        <%= link_to "Volver a recetas", recipes_path, class: "btn btn-secondary" %>
+        <%= button_to "Eliminar", recipe_path(@recipe), 
+              method: :delete, 
+              data: { confirm: "¿Estás seguro?" }, 
+              class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
