@@ -1,6 +1,9 @@
 <h1>Recetas</h1>
 
-<%= link_to "Crear nueva receta", new_recipe_path, class: "btn btn-primary mb-3" %>
+<%# This link will only show if the user is allowed to create a recipe %>
+<% if can?(:create, Recipe) %>
+  <%= link_to "Crear nueva receta", new_recipe_path, class: "btn btn-primary mb-3" %>
+<% end %>
 
 <table class="table table-striped">
   <thead>
@@ -19,8 +22,16 @@
         <td><%= recipe.difficulty %></td>
         <td>
           <%= link_to "Ver", recipe, class: "btn btn-sm btn-outline-primary" %>
-          <%= link_to "Editar", edit_recipe_path(recipe), class: "btn btn-sm btn-outline-secondary" %>
-          <%= link_to "Eliminar", recipe, method: :delete, data: { confirm: "¿Eliminar esta receta?" }, class: "btn btn-sm btn-outline-danger" %>
+
+          <%# This link will only show if the user is allowed to update the recipe %>
+          <% if can?(:update, recipe) %>
+            <%= link_to "Editar", edit_recipe_path(recipe), class: "btn btn-sm btn-outline-secondary" %>
+          <% end %>
+
+          <%# This link will only show if the user is allowed to destroy the recipe %>
+          <% if can?(:destroy, recipe) %>
+            <%= link_to "Eliminar", recipe, data: { turbo_method: :delete, turbo_confirm: "¿Eliminar esta receta?" }, class: "btn btn-sm btn-outline-danger" %>
+          <% end %>
         </td>
       </tr>
     <% end %>

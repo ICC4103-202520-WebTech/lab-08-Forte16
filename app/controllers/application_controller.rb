@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+  # CanCanCan will automatically handle unauthorized access
+  # and raise an exception, which Rails will catch.
+  # We don't need any special code here anymore.
 end
